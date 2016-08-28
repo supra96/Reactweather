@@ -5,8 +5,10 @@ var Main=React.createClass({
 		return(
 			<div>
 			<Nav/>
-			<h1> YOYO</h1>
+			<div className ="row">
+			<div class="columns medium-6 large-4  "><h1> Main Component</h1></div>
 			{this.props.children} 
+			</div>
 			</div>
 			);
 
