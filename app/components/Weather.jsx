@@ -2,11 +2,15 @@ var React = require('react');
 var WeatherForm = require('WeatherForm');
 var WeatherMessage = require('WeatherMessage');
 var openWeatherMap = require('OpenWeatherMap');
+ $(document).foundation();
 
 var Weather = React.createClass({
+
   getInitialState: function () {
     return {
       isLoading: false
+
+
     }
   },
   handleSearch: function (location) {
@@ -26,6 +30,7 @@ debugger;
     });
   },
   render: function () {
+
     var {isLoading, temp, location} = this.state;
 
     function renderMessage () {
@@ -37,10 +42,12 @@ debugger;
     }
 
     return (
+      
       <div>
         <h3>Weather Component</h3>
         <WeatherForm onSearch={this.handleSearch}/>
         {renderMessage()}
+
       </div>
     )
   }

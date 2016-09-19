@@ -28,6 +28,8 @@ module.exports = {
       WeatherMessage: 'app/components/WeatherMessage.jsx',
       About: 'app/components/About.jsx',
       Examples: 'app/components/Examples.jsx',
+      SideNav: 'app/components/SideNav.jsx',
+      Fileupload: 'app/components/FileUpload.jsx',
       OpenWeatherMap: 'app/API/OpenWeatherMap.jsx'
 
     },
@@ -45,5 +47,5 @@ module.exports = {
       }
     ]
   },
- 
+
 };

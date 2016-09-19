@@ -109,11 +109,13 @@
 	// var {name}=obj;//a var named name, whole value is whatever obj.name is . this is object structuring
 
 	var Main = __webpack_require__(223);
-	var Weather = __webpack_require__(225);
-	var About = __webpack_require__(251);
-	var Examples = __webpack_require__(252);
-	__webpack_require__(254);
-	$(document).foundation();
+	var Weather = __webpack_require__(226);
+	var About = __webpack_require__(252);
+	var Examples = __webpack_require__(253);
+	__webpack_require__(255);
+	$(document).ready(function () {
+	  $(document).foundation();
+	});
 
 	ReactDOM.render(React.createElement(
 	  Router,
@@ -24896,6 +24898,7 @@
 
 	var React = __webpack_require__(8);
 	var Nav = __webpack_require__(224);
+	var SideNav = __webpack_require__(225);
 	var Main = React.createClass({
 		displayName: 'Main',
 
@@ -24903,7 +24906,7 @@
 			return React.createElement(
 				'div',
 				null,
-				React.createElement(Nav, null),
+				React.createElement(SideNav, null),
 				React.createElement(
 					'div',
 					{ className: 'row' },
@@ -25021,16 +25024,85 @@
 	'use strict';
 
 	var React = __webpack_require__(8);
-	var WeatherForm = __webpack_require__(226);
-	var WeatherMessage = __webpack_require__(227);
-	var openWeatherMap = __webpack_require__(228);
+
+	var _require = __webpack_require__(166);
+
+	var Link = _require.Link;
+	var IndexLink = _require.IndexLink;
+
+	var SideNav = React.createClass({
+		displayName: 'SideNav',
+
+		onSearch: function onSearch(e) {
+			e.preventDefault();
+			alert('Not yet wired up');
+		},
+		render: function render() {
+			return React.createElement(
+				'ul',
+				{ className: 'side-nav' },
+				React.createElement(
+					'li',
+					{ className: 'active' },
+					React.createElement(
+						'a',
+						{ href: '#' },
+						'Link 1'
+					)
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement(
+						'a',
+						{ href: '#' },
+						'Link 2'
+					)
+				),
+				React.createElement('li', { 'class': 'divider' }),
+				React.createElement(
+					'li',
+					null,
+					React.createElement(
+						'a',
+						{ href: '#' },
+						'Link 3'
+					)
+				),
+				React.createElement(
+					'li',
+					null,
+					React.createElement(
+						'a',
+						{ href: '#' },
+						'Link 4'
+					)
+				)
+			);
+		}
+	});
+	module.exports = SideNav;
+
+/***/ },
+/* 226 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var React = __webpack_require__(8);
+	var WeatherForm = __webpack_require__(227);
+	var WeatherMessage = __webpack_require__(228);
+	var openWeatherMap = __webpack_require__(229);
+	$(document).foundation();
 
 	var Weather = React.createClass({
 	  displayName: 'Weather',
 
+
 	  getInitialState: function getInitialState() {
 	    return {
 	      isLoading: false
+
 	    };
 	  },
 	  handleSearch: function handleSearch(location) {
@@ -25083,9 +25155,10 @@
 	});
 
 	module.exports = Weather;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25122,7 +25195,7 @@
 	module.exports = WeatherForm;
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25150,12 +25223,12 @@
 	module.exports = WeatherMessage;
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var axios = __webpack_require__(229);
+	var axios = __webpack_require__(230);
 
 	var OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=8238c185b959e0b9bafaee74fa3bd94e&units=metric';
 
@@ -25177,20 +25250,20 @@
 	};
 
 /***/ },
-/* 229 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(230);
+	module.exports = __webpack_require__(231);
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(231);
-	var bind = __webpack_require__(232);
-	var Axios = __webpack_require__(233);
+	var utils = __webpack_require__(232);
+	var bind = __webpack_require__(233);
+	var Axios = __webpack_require__(234);
 
 	/**
 	 * Create an instance of Axios
@@ -25226,16 +25299,16 @@
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(250);
+	axios.spread = __webpack_require__(251);
 
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var bind = __webpack_require__(232);
+	var bind = __webpack_require__(233);
 
 	/*global toString:true*/
 
@@ -25535,7 +25608,7 @@
 
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25552,17 +25625,17 @@
 
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var defaults = __webpack_require__(234);
-	var utils = __webpack_require__(231);
-	var InterceptorManager = __webpack_require__(236);
-	var dispatchRequest = __webpack_require__(237);
-	var isAbsoluteURL = __webpack_require__(248);
-	var combineURLs = __webpack_require__(249);
+	var defaults = __webpack_require__(235);
+	var utils = __webpack_require__(232);
+	var InterceptorManager = __webpack_require__(237);
+	var dispatchRequest = __webpack_require__(238);
+	var isAbsoluteURL = __webpack_require__(249);
+	var combineURLs = __webpack_require__(250);
 
 	/**
 	 * Create a new instance of Axios
@@ -25643,13 +25716,13 @@
 
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(231);
-	var normalizeHeaderName = __webpack_require__(235);
+	var utils = __webpack_require__(232);
+	var normalizeHeaderName = __webpack_require__(236);
 
 	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 	var DEFAULT_CONTENT_TYPE = {
@@ -25721,12 +25794,12 @@
 
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(231);
+	var utils = __webpack_require__(232);
 
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -25739,12 +25812,12 @@
 
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(231);
+	var utils = __webpack_require__(232);
 
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -25797,13 +25870,13 @@
 
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var utils = __webpack_require__(231);
-	var transformData = __webpack_require__(238);
+	var utils = __webpack_require__(232);
+	var transformData = __webpack_require__(239);
 
 	/**
 	 * Dispatch a request to the server using whichever adapter
@@ -25844,10 +25917,10 @@
 	    adapter = config.adapter;
 	  } else if (typeof XMLHttpRequest !== 'undefined') {
 	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(239);
+	    adapter = __webpack_require__(240);
 	  } else if (typeof process !== 'undefined') {
 	    // For node use HTTP adapter
-	    adapter = __webpack_require__(239);
+	    adapter = __webpack_require__(240);
 	  }
 
 	  return Promise.resolve(config)
@@ -25879,12 +25952,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(231);
+	var utils = __webpack_require__(232);
 
 	/**
 	 * Transform the data for a request or a response
@@ -25905,18 +25978,18 @@
 
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var utils = __webpack_require__(231);
-	var settle = __webpack_require__(240);
-	var buildURL = __webpack_require__(243);
-	var parseHeaders = __webpack_require__(244);
-	var isURLSameOrigin = __webpack_require__(245);
-	var createError = __webpack_require__(241);
-	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(246);
+	var utils = __webpack_require__(232);
+	var settle = __webpack_require__(241);
+	var buildURL = __webpack_require__(244);
+	var parseHeaders = __webpack_require__(245);
+	var isURLSameOrigin = __webpack_require__(246);
+	var createError = __webpack_require__(242);
+	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(247);
 
 	module.exports = function xhrAdapter(config) {
 	  return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -26010,7 +26083,7 @@
 	    // This is only done if running in a standard browser environment.
 	    // Specifically not if we're in a web worker, or react-native.
 	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(247);
+	      var cookies = __webpack_require__(248);
 
 	      // Add xsrf header
 	      var xsrfValue = config.withCredentials || isURLSameOrigin(config.url) ?
@@ -26072,12 +26145,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var createError = __webpack_require__(241);
+	var createError = __webpack_require__(242);
 
 	/**
 	 * Resolve or reject a Promise based on response status.
@@ -26103,12 +26176,12 @@
 
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var enhanceError = __webpack_require__(242);
+	var enhanceError = __webpack_require__(243);
 
 	/**
 	 * Create an Error with the specified message, config, error code, and response.
@@ -26126,7 +26199,7 @@
 
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26151,12 +26224,12 @@
 
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(231);
+	var utils = __webpack_require__(232);
 
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -26225,12 +26298,12 @@
 
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(231);
+	var utils = __webpack_require__(232);
 
 	/**
 	 * Parse headers into an object
@@ -26268,12 +26341,12 @@
 
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(231);
+	var utils = __webpack_require__(232);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -26342,7 +26415,7 @@
 
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26384,12 +26457,12 @@
 
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(231);
+	var utils = __webpack_require__(232);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -26443,7 +26516,7 @@
 
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26463,7 +26536,7 @@
 
 
 /***/ },
-/* 249 */
+/* 250 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26481,7 +26554,7 @@
 
 
 /***/ },
-/* 250 */
+/* 251 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26514,7 +26587,7 @@
 
 
 /***/ },
-/* 251 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26573,59 +26646,246 @@
 	module.exports = About;
 
 /***/ },
-/* 252 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var React = __webpack_require__(8);
+	var Fileupload = __webpack_require__(254);
 	var Examples = React.createClass({
-	  displayName: "Examples",
+	  displayName: 'Examples',
 
+	  componentWillUnmount: function componentWillUnmount() {
+	    console.log('Yeah, the component did get unmounted!');
+	  },
+	  componentWillMount: function componentWillMount() {
+	    console.log('componentmounted! Loaded before DOM renders anything, so no access to any refs or props');
+	  },
+	  componentDidMount: function componentDidMount() {
+	    console.log('component did mount.');
+	    $(document).foundation();
+	  },
 	  render: function render() {
 	    return React.createElement(
-	      "div",
-	      { className: "row" },
-	      React.createElement("div", { className: "medium-4 columns" }),
+	      'div',
+	      { className: 'row' },
 	      React.createElement(
-	        "div",
-	        { className: "medium-4 columns" },
-	        React.createElement("img", { className: "thumbnail", src: "https://s3-us-west-2.amazonaws.com/songs1996/FeedUploadImages/IMG-20160528-WA0001.jpg" })
+	        'div',
+	        { className: 'medium-4 columns' },
+	        React.createElement(
+	          'label',
+	          { 'for': 'exampleFileUpload', 'class': 'button expanded' },
+	          'Upload File yo!'
+	        ),
+	        React.createElement('input', { type: 'file', id: 'exampleFileUpload', 'class': 'show-for-sr' })
 	      ),
 	      React.createElement(
-	        "div",
-	        { className: "medium-4 columns" },
+	        'div',
+	        { className: 'medium-4 columns' },
+	        React.createElement('img', { className: 'thumbnail', src: '../../Assets/images/hey.jpg', width: '500', height: '750' }),
 	        React.createElement(
-	          "h5",
+	          'h2',
 	          null,
-	          "Hmm Badhiya h Summer school m kya hota h?? FRI 1:26PM Normal jo normal semesters mein hota hai Summerschool bachche lete h taki normal semester mein courseload kam ho jaye Achha Han bataya tha toone SAT 11:37AM Tera woh biotech waala khatam? Tu uski or help nahi kar raha ?? Naa wo tab hi complete gya tha Or mera mech k hi kaam tha.. 3d printing ek headset ko SAT 2:21PM",
-	          React.createElement("br", null),
-	          React.createElement("br", null),
+	          'Dropdown Menu Example'
+	        ),
+	        React.createElement(
+	          'ul',
+	          { className: 'dropdown menu', 'data-dropdown-menu': true },
 	          React.createElement(
-	            "p",
+	            'li',
 	            null,
-	            "Han yeh bhi bataya thaa..toone main bhool gaya Choose the perfect design Create a beautiful blog that fits your style. Choose from a selection of easy-to-use templates – all with flexible layouts and hundreds of background images – or design something new. ToolsPreview templatePreview template Get a free domain Give your blog the perfect home. Get a free blogspot.com domain or buy a custom domain with just a few clicks. Letter groupLetter groupLetter groupLetter group Earn money Get paid for your hard work. Google AdSense can automatically display relevant targeted ads on your blog so that you can earn income by posting about your passion"
+	            React.createElement(
+	              'a',
+	              null,
+	              'Cars'
+	            ),
+	            React.createElement(
+	              'ul',
+	              { className: 'menu' },
+	              React.createElement(
+	                'li',
+	                null,
+	                React.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'Ford'
+	                )
+	              ),
+	              React.createElement(
+	                'li',
+	                null,
+	                React.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'Mahindra'
+	                ),
+	                React.createElement(
+	                  'ul',
+	                  { className: 'menu' },
+	                  React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                      'a',
+	                      { href: '#' },
+	                      'Xylo'
+	                    )
+	                  ),
+	                  React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                      'a',
+	                      { href: '#' },
+	                      'Scorpio'
+	                    )
+	                  ),
+	                  React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                      'a',
+	                      { href: '#' },
+	                      'XUV'
+	                    ),
+	                    React.createElement(
+	                      'ul',
+	                      { className: 'menu' },
+	                      React.createElement(
+	                        'li',
+	                        null,
+	                        React.createElement(
+	                          'a',
+	                          { href: '#' },
+	                          'W4'
+	                        )
+	                      ),
+	                      React.createElement(
+	                        'li',
+	                        null,
+	                        React.createElement(
+	                          'a',
+	                          { href: '#' },
+	                          'W6'
+	                        )
+	                      )
+	                    )
+	                  )
+	                )
+	              ),
+	              React.createElement(
+	                'li',
+	                null,
+	                React.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'Skoda'
+	                )
+	              )
+	            )
 	          ),
-	          "."
+	          React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              'a',
+	              { href: '#' },
+	              'Sports'
+	            ),
+	            React.createElement(
+	              'ul',
+	              { className: 'menu' },
+	              React.createElement(
+	                'li',
+	                null,
+	                React.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'Cricket'
+	                )
+	              ),
+	              React.createElement(
+	                'li',
+	                null,
+	                React.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'Football'
+	                )
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              'a',
+	              { href: '#' },
+	              'Country'
+	            )
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'medium-4 columns' },
+	        React.createElement(
+	          'h5',
+	          null,
+	          'HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U HI How R UHI How R UHI How R UHI How R UHI How R UHI How R U'
 	        )
 	      )
 	    );
 	  }
 	});
 	module.exports = Examples;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ },
-/* 253 */,
 /* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(8);
+	var FileUpload = React.createClass({
+		displayName: 'FileUpload',
+
+		onFormSubmit: function onFormSubmit(e) {
+			e.preventDefault();
+			var location = this.refs.location.value;
+			if (location.length > 0) {
+				this.refs.location.value = '';
+				this.props.onSearch(location);
+			}
+		},
+		render: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'form',
+					{ action: 'demo_form.asp' },
+					React.createElement('input', { type: 'file', name: 'pic', accept: 'image/*' }),
+					React.createElement('input', { type: 'submit' })
+				)
+			);
+		}
+	});
+	module.exports = FileUpload;
+
+/***/ },
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(255);
+	var content = __webpack_require__(256);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(257)(content, {});
+	var update = __webpack_require__(258)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -26642,10 +26902,10 @@
 	}
 
 /***/ },
-/* 255 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(256)();
+	exports = module.exports = __webpack_require__(257)();
 	// imports
 
 
@@ -26656,7 +26916,7 @@
 
 
 /***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports) {
 
 	/*
@@ -26712,7 +26972,7 @@
 
 
 /***/ },
-/* 257 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
